@@ -42,8 +42,9 @@ export class PhotosStore {
         })
         .then(() => this.useFilter())
         .then(photos => {
-          if (photos.length < limit && this.filter.length > 0)
+          if (photos.length < limit && this.filter.length > 0) {
             this.fetchMore(limit - photos.length);
+          }
         });
     });
 
