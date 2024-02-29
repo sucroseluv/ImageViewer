@@ -51,7 +51,6 @@ const FeedScreen = observer(({navigation}: Props): React.JSX.Element => {
         />
       )}
       onEndReached={() => {
-        console.log('end');
         fetchMore(LIMIT * columns);
       }}
       onEndReachedThreshold={1}
