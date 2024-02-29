@@ -16,8 +16,8 @@ const composeButtons =
   () => {
     return (
       <View style={{flexDirection: 'row'}}>
-        {buttons.map(Button => (
-          <Button />
+        {buttons.map((Button, index) => (
+          <Button key={`headButton${index}`} />
         ))}
       </View>
     );
@@ -25,7 +25,7 @@ const composeButtons =
 
 const FeedScreen = observer(({navigation}: Props): React.JSX.Element => {
   const [columns, GridButton] = useColumnsButton();
-  const {filteredPhotosList, setFilter, isLoading, fetchMore} =
+  const {filteredPhotosList, setFilter, isLoading, fetchMore, loadPhotos} =
     useRootStore().photosStore;
 
   useEffect(() => {
@@ -55,6 +55,7 @@ const FeedScreen = observer(({navigation}: Props): React.JSX.Element => {
         fetchMore(LIMIT * columns);
       }}
       onEndReachedThreshold={1}
+      onRefresh={() => loadPhotos()}
     />
   );
 });
